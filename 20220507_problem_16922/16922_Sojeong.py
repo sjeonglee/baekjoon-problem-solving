@@ -5,7 +5,6 @@ try:
 except ValueError:
   print('ERROR: input int number')
 
-#### HEURISTIC ####
 roman = [1, 5, 10, 50]
 
 for i in range(n):
