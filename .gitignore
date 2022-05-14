@@ -1,3 +1,5 @@
 .replit
+.breakpoint
 poetry.lock
 pyproject.toml
+main.py
