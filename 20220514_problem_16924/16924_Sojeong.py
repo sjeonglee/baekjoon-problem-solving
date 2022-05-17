@@ -19,7 +19,7 @@ for i in range(N):
 board = np.array(board)
 # print(board)
 
-# get the starting number of the cross
+# get the starting number of the cross. start_num is the number of stars (not size)
 sum_column = board.sum(axis = 0)
 sum_row = board.sum(axis=1)
 start_num = min(max(sum_column), max(sum_row))
@@ -28,13 +28,17 @@ start_num = min(max(sum_column), max(sum_row))
 if start_num % 2 != 1:
     start_num = start_num - 1
 
-def get_cross_matrix(i:int, position:int):
+def get_cross_matrix(cross_size:int, middle_position:list): # middle_position = [row, column]
     plain_board = np.zeros([N, M])
-    for i in range(1, N + 1):
-        for j in range(1, M + 1):
+    if (middle_position[0] - cross_size < 0) or (middle_position[1] - cross_size < 0):
+        return plain_board
+    elif (middle_position[0] + cross_size >= M) or (middle_position[1] + cross_size >= N):
+        return plain_board
+    else:
+        plain_board[middle_position[0], middle_position[1] - cross_size:middle_position[1] + cross_size] = 1
+        plain_board[middle_position[0] - cross_size:middle_position[0] + cross_size, middle_position[1]] = 1
+        return plain_board
 
-
-
-
-for i in range(N):
-    for j in range(M):
+get_cross_matrix(1, [2, 2])
+# for i in range(N):
+#     for j in range(M):
